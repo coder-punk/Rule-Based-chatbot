@@ -1,0 +1,49 @@
+import nltk
+import random
+
+# Download necessary NLTK data (if you haven't already)
+# nltk.download('punkt')
+# nltk.download('averaged_perceptron_tagger')
+
+def greet():
+    greetings = ["Hello!", "Hi there!", "Hey!", "Greetings!"]
+    return random.choice(greetings)
+
+def farewell():
+    farewells = ["Goodbye!", "See you later!", "Farewell!", "Take care!"]
+    return random.choice(farewells)
+
+def respond_to_question(question):
+    # Basic rule-based responses
+    if "name" in question.lower():
+        return "My name is RuleBot."
+    elif "weather" in question.lower():
+        return "I'm sorry, I don't have access to real-time information, including the weather."
+    elif "how are you" in question.lower():
+        return "I'm doing well, thank you!"
+    else:
+        return "I'm not sure how to answer that."
+
+def chatbot():
+    print(greet())
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["bye", "goodbye", "exit"]:
+            print("RuleBot:", farewell())
+            break
+        
+        # Tokenize user input (optional, but can be useful for more complex processing)
+        # tokens = nltk.word_tokenize(user_input)
+
+        # Determine intent (very basic example, more advanced NLP techniques can be used)
+        if "?" in user_input:
+            print("RuleBot:", respond_to_question(user_input))
+        else:
+            # Handle statements (can be expanded with more rules)
+            if "hello" in user_input.lower() or "hi" in user_input.lower():
+                print("RuleBot:", "Hello there!")
+            else:
+              print("RuleBot:", "I understand.")
+
+if __name__ == "__main__":
+    chatbot()
